@@ -1,0 +1,62 @@
+{% extends 'base.html'%}
+
+{% block body%}
+
+<div class = "container mt-5">
+    <h1 style="color: orange">Conversão de Unidades</h1>
+    <p></p>
+    <div class = "container">
+        <div class="row">
+            <div class="col">
+                <form method="POST" action="" class="border m-5 p-4" enctype="multipart/form-data">
+                    {{ form.csrf_token }}
+                    <legend>Conversão</legend>
+                    <fieldset>
+                        <div class="row g-3 mb-8">
+                          <div class="col">
+                            <input type="text" class="form-control" placeholder="First name" aria-label="First name">
+                          </div>
+                          <div class="col">
+                            <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                          </div>
+                        </div>
+                        <div class="row g-3 mt-7">
+                            <div class="col">
+                                <div class="input-group ">
+                                    <select class="form-select" id="inputGroupSelect01">
+                                        <option selected>De</option>
+                                        <option value="1">PSI</option>
+                                        <option value="2">KPA</option>
+                                        <option value="3">BAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col justify-content-center">
+                                <button type="button" class="btn btn-secondary ms-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z"></path>
+                                    </svg>
+                                    <span class="visually-hidden"></span>
+                                </button>
+                            </div>
+                            <div class="col">
+                                <div class="input-group mb-3">
+                                    <select class="form-select" id="inputGroupSelect02">
+                                        <option selected>Para</option>
+                                        <option value="1">PSI</option>
+                                        <option value="2">KPA</option>
+                                        <option value="3">BAR</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'base.html'%}
+
+{% block body%}
+
+<div class="container mt-5 d-flex justify-content-center">
+
+            <div class="card p-3">
+                <div class="d-flex align-items-center">
+                    <div class="image pe-2">
+                        <img src="{{ profile_photo }}" class="rounded" width="200" >
+                    </div>
+                <div class="ml-3 w-100">
+                   <h4 class="mb-0 mt-0">{{ current_user.username }}</h4>
+                   <span>{{ current_user.email }}</span>
+                   <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                        <div class="d-flex flex-column">
+                            <span class="articles">Cursos</span>
+                            {% if 'Não' in current_user.cursos or current_user.cursos == '' %}
+                                <span class="number1">0</span>
+                            {% else %}
+                                <span class="number1">{{ current_user.cursos.split(';')|length }}</span>
+                            {% endif %}
+                        </div>
+                        <div class="d-flex flex-column">
+                            <span class="rating">Posts</span>
+                            <span class="number1">{{ current_user.post|length }}</span>
+                        </div>
+                   </div>
+                   <div class="button mt-2 d-flex flex-row align-items-center">
+                    <a class="w-100" href="{{ url_for('editar_perfil') }}">
+                        <button class="btn btn-sm btn-outline-primary w-100">Editar Perfil</button>
+                    </a>
+                   </div>
+                </div>
+                </div>
+            </div>
+         </div>
+        <div class="row justify-content-center">
+                <div class="col col-4" style="text-align: center">
+                    <h2>Cursos:</h2><br>
+                    {% for curso in current_user.cursos.split(';') %}
+                        <button type="button" class="btn btn-success mt-2" disabled>{{ curso }}</button>
+                    {% endfor %}
+                </div>
+
+                <div class="container mt-3">
+                    {% block form_editar_perfil %}
+                    {% endblock %}
+                        <div class="container border pt-2 pb-5">
+                            <h2 class="container mt-3" style="text-align: center">Posts:</h2><br>
+                            {% for post in posts %}
+                                <div class="container mt-3">
+                                    <div class="row border mt-4 pt-2 meupost">
+                                        <div class="col col-12">
+                                            <div class="align-top editbutton mt-2 pl-0">
+                                                <a  href="{{ url_for('exibir_post', post_id=post.id) }}">
+                                                  <button type="button" class="btn btn-warning">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"></path>
+                                                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"></path>
+                                                        </svg>
+                                                        Editar Post
+                                                  </button>
+                                                </a>
+                                                <a href="{{ url_for('excluir_post', post_id=post.id) }}">
+                                                    <button type="button" class="btn btn-outline-danger">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square" viewBox="0 0 16 16">
+                                                            <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"></path>
+                                                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"></path>
+                                                        </svg>
+                                                        Excluir Post
+                                                    </button>
+                                                </a>
+                                            </div>
+                                            <h3>{{ post.titulo }}</h3>
+                                            <p> {{ post.corpo }}</p>
+                                        </div>
+                                        <div class="align-bottom datahora mb-2">
+                                            {% if post.editado == 1 %}
+                                                <i>Editado às: {{ datetime.strftime(post.data_criacao, '%d/%m/%y às %H:%M') }}</i>
+                                            {% else %}
+                                                <i>Publicado em: {{ datetime.strftime(post.data_criacao, '%d/%m/%y às %H:%M') }}</i>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                </div>
+
+        </div>
+
+{% endblock %}
