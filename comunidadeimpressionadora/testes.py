@@ -22,15 +22,10 @@ with app.app_context():
 #         print(f"E-mail: {usuario.email}")
 #         print(f"Senha: {usuario.senha}")
 #     #query filtering
-#     usuario_teste = Usuario.query.filter_by(email='bejr2002@gmail.com').first() #se usar o all da merda na consulta de atributos
+#     usuario_teste = Usuario.query.filter_by(email='bejr2002@gmail.com').first()
 #     print(usuario_teste)
 #     print(usuario_teste.username)
 
-
-# with app.app_context(): #CREATING POSTS
-#     post1 = Post(titulo='Testando Parte 2', corpo='Agora é o Lira postando', id_autor=2)
-#     database.session.add(post1)
-#     database.session.commit()
 
 
 # with app.app_context(): #CONSULTING POSTS
