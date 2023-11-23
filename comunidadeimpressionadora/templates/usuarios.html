@@ -1,0 +1,39 @@
+{% extends 'base.html'%}
+
+{% block body%}
+
+ <!-- admin@gmail admin123 -->
+
+    <div class = "container mt-5">
+        <h1 style="color: orange">Usuários</h1>
+        <p></p>
+        <table class="table">
+            <tr>
+                <th scope="col">Imagem de Perfil</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Email</th>
+                <th scope="col">Senha</th>
+                <th scope="col">Cursos</th>
+            </tr>
+
+            {% for user in lista_usuarios %}
+            <tr>
+                <form action="">
+                <td> <img src="{{ url_for('static', filename='profile_images/{}'.format(user.foto_perfil)) }}" class="rounded" width="200"> </td>
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.senha}}</td>
+                <td>{{user.cursos}}</td>
+                </form>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </div>
+    <div>
+
+    </div>
+
+{% endblock %}
